@@ -1,0 +1,28 @@
+probes:
+  readinessProbe:
+  startupProbe:
+  livenessProbe:
+    initialDelaySeconds: 0
+    periodSeconds: 10 
+    timeoutSeconds: 1 
+    successThreshold: 1
+    failureThreshold: 3  
+    httpGet:
+      host: localhost
+      path: /healthz  
+      port: 80
+      scheme: HTTP   
+      httpHeaders:
+        - name: X-Health
+          value:  "Kubernetes-Health"
+        - name: Host
+          value: "kube-internal.yoursite.com"      
+    tcpSocket:
+      port: 80
+      scheme: HTTP  
+    exec:
+      command: 
+        - sh
+        - -c
+        - |-
+          curl my-service:80

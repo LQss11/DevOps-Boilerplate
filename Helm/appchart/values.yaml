@@ -1,0 +1,49 @@
+environment: production
+# Simple variable
+intvar: 1
+stringvar: hello world
+empty: 
+nameOverride: ""
+# Yaml example
+service:
+  type: ClusterIP
+  port: 80
+service2:
+  type: ClusterIP
+  ports:   
+    - number: 80
+      target: 80
+      name: http
+    - number: 443
+      target: 443
+      name: https    
+    - number: 8080
+      target: 7777
+      name: admin
+      user: aaa                       
+
+# Empty Object
+object: {}
+# Empty list
+list: []
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+ingress:
+  hosts:
+    - host: host1.com
+      paths:
+        - path: /
+          pathType: default
+        - path: /api
+          pathType: api          
+    - host: host2.com
+      paths:
+        - path: /app
+          pathType: app       

@@ -1,0 +1,12 @@
+{{- if .Values.configmap.enabled -}}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sample.fullname" . }}
+  labels:
+    {{- include "sample.labels" . | nindent 4 }}
+data:
+{{- include "sample.configMap.variables" . | indent 4 -}}
+{{- include "sample.configMap.files" . | indent 4  -}}
+{{- end -}}

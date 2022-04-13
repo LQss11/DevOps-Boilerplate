@@ -1,0 +1,26 @@
+** Please be patient while the chart is being deployed **
+
+This chart was created by {{ .Release.Service }} on kubernetes version ({{ .Capabilities.KubeVersion }}).
+
+{{- if (ne .Values.service.type "ClusterIP")  }}
+
+"{{ include "sample.fullname" . }}" is with service type {{ .Values.service.type }} and exposed from outside the cluster, and can be accessed on port {{ .Values.service.nodePort}}.
+
+{{- else }}
+
+"{{ include "sample.fullname" . }}" is with service type {{ .Values.service.type }} and can be accessed only within the cluster on port {{ .Values.service.port }}.
+
+you can expose it by running:
+        kubectl port-forward deployment/{{ include "sample.fullname" . }} <tunnel-port>:{{ .Values.service.port }}
+{{- end }}
+
+the FQDN of the pod service is: 
+        {{ include "sample.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local (port {{ .Values.service.port}})
+
+To run commands inside the deployment container run:
+        kubectl exec -it  deployment/{{ include "sample.fullname" . }} -- sh -c "<command>"
+
+{{- if .Values.persistence.enabled }}
+if you are getting this error message "0/1 nodes are available: 1 pod has unbound immediate PersistentVolumeClaims."
+that means since you are working with pv & pvc you will need to wait untill the volumes are successfuly create 
+{{- end -}}

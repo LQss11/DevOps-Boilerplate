@@ -1,0 +1,108 @@
+#####################
+#  Global app data  #
+#####################
+environment: dev
+nameOverride: ""
+fullnameOverride: ""
+# Labels
+labels:
+  instance: instance
+  component: component
+  partOf: partOf
+  createdBy: controller-manager
+
+#############
+#  Service  #
+#############
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 80
+
+################
+#  Deployment  #
+################
+replicaCount: 1
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+# Uncomment and remove {} to apply changes
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+################
+#  Config Map  #
+################
+configmap:
+  enabled: true
+  files: 
+    # Load files in configmap 
+    enabled: true
+    # Create in configmap but not load in deployment if false
+    load: true   
+  variables:
+    # Load file in configmap 
+    enabled: true
+    # Create list in configmap but not load in deployment if false
+    load: false
+    list:
+      - key: key1
+        value: value1
+      - key: key2
+        value: value2
+
+############
+#  Secret  #
+############
+secret:
+  enabled: true
+  files: 
+    # Load file in secret file  
+    enabled: true   
+  variables:
+    # Load variables in secret file  
+    enabled: true  
+    # Create list in secret file but not load in deployment if false
+    load: false
+    list: 
+      - key: secret1
+        value: value1
+      - key: secret2
+        value: value2
+
+#############
+#  PV+PVC   #
+#############
+persistence:
+  enabled: false
+  storageClassName: manual
+  accessModes: ReadWriteOnce
+  storageRequest: 2Gi
+  storageCapacity: 1Gi
+  name: storage-name
+  mountPath: /mnt/app/sqlserver
+  hostPath:
+    path: /var/opt/mssql
+    type: DirectoryOrCreate  
+
+###########################
+#  Environment-variables  #
+###########################
+env:
+  enabled: false
+  variables:
+    - name: ENV1
+      value: VALUE1
+    - name: ENV2
+      value: VALUE2
+    - name: ENV3
+      value: VALUE3
+    - name: ENV4
+      value: VALUE4                 

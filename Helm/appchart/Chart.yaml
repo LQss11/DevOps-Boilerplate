@@ -1,0 +1,14 @@
+apiVersion: v2
+name: appchart
+description: A Helm chart for Kubernetes
+
+# A chart can be either an 'application' or a 'library' chart.
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed and # Library charts provide useful utilities or functions for the chart developer.
+type: application
+
+# This is the chart version.
+version: 0.1.0
+
+# This is the version number of the application being deployed.
+appVersion: "1.16.0"

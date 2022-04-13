@@ -1,0 +1,100 @@
+#####################
+#  Global app data  #
+#####################
+environment: dev
+nameOverride: ""
+fullnameOverride: ""
+# Labels
+labels:
+  instance: bqxvip
+  component: database
+  partOf: application
+  createdBy: controller-manager
+
+#############
+#  Service  #
+#############
+service:
+  # type can be LoadBalancer | ClusterIP | NodePort
+  type: NodePort
+  port: 8080
+  targetPort: 80
+  nodePort: 30080
+
+################
+#  Deployment  #
+################
+replicaCount: 1
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+# Uncomment and remove {} to apply changes
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+################
+#  Config Map  #
+################
+configmap:
+  enabled: false
+  # Unexistant config files will not be created and loaded as volume mounts
+  files:
+    - name: config.cfg 
+      mountPath: /mnt/app/sqlserver
+    - name: application-prod.propreties 
+      mountPath: /mnt/app/sqlserver   
+    - name: unexistnant.file 
+      mountPath: /will/not/be/created         
+  variables:
+    - key: key1
+      value: value1
+    - key: key2
+      value: value2
+
+############
+#  Secret  #
+############
+secret:
+  enabled: false
+  variables:
+    - key: secret1
+      value: value1
+    - key: secret2
+      value: value2
+
+#############
+#  PV+PVC   #
+#############
+persistence:
+  enabled: false
+  storageClassName: manual
+  accessModes: ReadWriteOnce
+  storageRequest: 2Gi
+  storageCapacity: 1Gi
+  name: storage-name
+  mountPath: /mnt/app/sqlserver
+  hostPath:
+    path: /var/opt/mssql
+    type: DirectoryOrCreate  
+
+###########################
+#  Environment-variables  #
+###########################
+env:
+  enabled: false
+  variables:
+    - name: ENV1
+      value: VALUE1
+    - name: ENV2
+      value: VALUE2
+    - name: ENV3
+      value: VALUE3
+    - name: ENV4
+      value: VALUE4                 

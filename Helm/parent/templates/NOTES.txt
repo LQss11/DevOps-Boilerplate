@@ -1,0 +1,6 @@
+Defined child release name is: {{ include "child.name" .Subcharts.child }}
+Import data using exports/dependencies example: child-url={{ .Values.db_url.url }} | exported value={{ .Values.exported }} | export+override value {{ .Values.override }}
+ 
+Simple load child value: {{ .Values.child.name }}
+
+

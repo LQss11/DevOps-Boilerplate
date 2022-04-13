@@ -1,0 +1,17 @@
+{{- if .Values.persistence.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "sample.fullname" . }}
+  labels:
+    {{- include "sample.labels" . | nindent 4 }}
+spec:
+    storageClassName: {{ .Values.persistence.storageClassName }}  
+    capacity:
+      storage: {{ .Values.persistence.storageCapacity }}  
+    accessModes:
+      - {{ .Values.persistence.accessModes }}  
+    hostPath:
+      path: {{ .Values.persistence.hostPath.path }}  
+      type: {{ .Values.persistence.hostPath.type }}  
+{{- end -}}

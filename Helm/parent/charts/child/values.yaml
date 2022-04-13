@@ -1,0 +1,16 @@
+example: child-example
+dessert: child-dessert
+name: child1
+
+global:
+  override: child
+
+exports:
+  data:
+    db_url:
+      username: admin
+      url: localhost:8080
+  data2:
+    exported: value
+  override:
+    override: child

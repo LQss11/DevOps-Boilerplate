@@ -1,0 +1,103 @@
+# 
+{{- $svcPort := .Values.service.port -}}
+# helm install <Release.name> package/chart
+Release name: {{ .Release.Name }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+File: this is an example
+chart_name: {{ .Chart.Name }}
+
+app_name: {{ include "appchart.name" . }}
+
+{{ include "appchart.yaml" . }}
+
+parent_yaml:
+        {{- include "appchart.yaml" . | indent 4 }}
+
+{{- $svcPort := .Values.service.port }}
+servicePort: {{ $svcPort }}
+
+
+# Range loop
+ingress_example:
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
+      paths:
+        {{- range .paths }}
+        - path: {{ .path }}   
+        {{- end }}           
+    {{- end }}
+
+
+Condition_Result: {{ include "condition" . }}
+
+
+resources_example:
+          {{- toYaml .Values.resources | nindent 2 }}
+
+# Load files --set-file example https://stackoverflow.com/a/57708150/13541620 
+### FILES LOAD SINGLE FILE
+data_single_file: |
+{{ .Files.Get "config1.toml" | indent 2 }}
+### FILES RANGE
+## Can use path/file but will affect name
+data_range:
+  {{- $files := .Files }}
+  {{- range tuple "config1.toml" "config2.toml" }}
+  {{ . }}: |-
+        {{ $files.Get . }}
+  {{- end }}
+
+### FILES LINES
+data_lines:
+  some-file.txt: {{ range .Files.Lines "files/file1.cfg" }}
+    {{ . }}{{ end }}
+
+### SECRET
+data_secret:
+  token: |-
+        {{ .Files.Get "files/secret.key" | b64enc }}
+
+### GLOB
+data_glob: 
+{{- $currentScope := . -}}
+{{ range $path, $_ :=  .Files.Glob  "files/**.glob" }}
+{{- $path | nindent 2 -}}: |
+{{- with $currentScope}}
+{{- .Files.Get $path | nindent 4 -}}
+{{- end -}}
+{{ end }}
+
+### GLOB2
+data_glob2: |
+{{- range $path, $_ :=  .Files.Glob  "files/**.glob" }}
+      {{- $.Files.Get $path | nindent 4  -}}
+{{ end }}
+
+## GLOB AS CONFIG
+data_glob_config:
+{{ (.Files.Glob "files/*").AsConfig | indent 2 }}
+## GLOB AS SECRET
+data_glob_secret:
+{{ (.Files.Glob "files/*").AsSecrets | indent 2 }}
+
+### Range with key value pairs + condition
+service2_example:
+{{- $ports := .Values.service2.ports -}}
+{{- range $key, $val := $ports -}}
+{{- if and (eq ($val.number | int) 8080) (eq $val.user "admin") }}
+    {{- fail "Please use other port than 8080 for the admin user "}}
+{{- end }}
+  - port: {{ .number }}
+    user: {{ .user }}
+    targetPort: {{ .target }}
+    protocol: TCP {{ $key }} 
+{{- end -}}
+
+
+### Load imagepullpolicy if production/dev
+imagePullPolicy: {{ include "appchart.imagePullPolicy" . }}
+
+# Random value
+random: {{ randAlphaNum 5 | quote }}

@@ -1,0 +1,9 @@
+# Must add .Values.global.dessert to use values in subcharts
+global:
+  example: parent-example
+  dessert: parent-dessert
+
+override: parent
+# Override child values
+child:
+  example: parent-override-example
