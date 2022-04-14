@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app
+  annotations:
+    helm.sh/hook: pre-install
+    helm.sh/hook-weight: "{{ .Values.cmWeight }}"
+data:
+  key: value
