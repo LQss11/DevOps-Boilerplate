@@ -116,3 +116,6 @@ to solve that all I had to do is delete deployment and upgrade again:
 kubectl delete deployment nginx
 helm upgrade --install nginx <chart-package>
 ```
+
+# Setup helm private repo
+to setup a private repo on a **Azure Blob Storage** you can follow [this example](https://cwienczek.com/2017/10/setting-up-secure-helm-chart-repository-on-azure-blob-storage/)
