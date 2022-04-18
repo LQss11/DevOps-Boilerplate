@@ -4,7 +4,7 @@ in order to install helm follow this [link](https://helm.sh/docs/intro/install/)
 To search for helm charts you can find them in [https://artifacthub.io/](https://artifacthub.io/) and once you know which one to install you can run this command first to add a repo:
 ```sh
 # helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo add repo <repo-name> <repo-url>
+helm repo add  <repo-name> <repo-url>
 ```
 now that you have added a repo you can install some of its charts but first check if it got installed:
 ```sh
