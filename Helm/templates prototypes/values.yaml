@@ -1,0 +1,5 @@
+secret:
+  enabled: true
+  files:
+    - name: example.crt      
+    - name: example2.crt      
