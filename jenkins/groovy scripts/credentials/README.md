@@ -1,0 +1,1 @@
+To run scripts in a jenkins instance you can visit `http://<host>:<port>/script` this will redirect you to a page where you will be able to run groovy scripts!
