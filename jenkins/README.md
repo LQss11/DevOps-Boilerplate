@@ -6,9 +6,9 @@ Usually I use docker to implement CI CD on my env so in order to do that I am ad
 If you have encountred issue about access, usually it's related to the user process running the jenkins process and sometimes that user wouldn't be able to do some actions or access files so you will need to provide him with certain permissions you can use `chown` or `chmod` like so:
 ```sh
 # Change ownership to a whole directory
-chmod -R user:group /path/to/dir
+chown user:group -R /path/to/dir
 # Change ownership to a single file
-chmod user:group /path/to/file
+chown user:group /path/to/file
 ```
 ```sh
 # Careful with the value after chmod
