@@ -1,3 +1,7 @@
+# Jenkins
+In this repo you can find some helpful jenkins tips and tricks that you could use in your workloads.
+## Dockerfile
+Usually I use docker to implement CI CD on my env so in order to do that I am adding several useful information in that dockerfile where I could workaround with my jenkins env
 ### Jenkins Permissions
 If you have encountred issue about access, usually it's related to the user process running the jenkins process and sometimes that user wouldn't be able to do some actions or access files so you will need to provide him with certain permissions you can use `chown` or `chmod` like so:
 ```sh
