@@ -1,0 +1,26 @@
+
+pipeline {
+    agent any
+    stages {
+        stage('Stage 1') {
+            steps {
+                dir('new-dir') {
+                    git branch: 'main', credentialsId: 'jenkins-master-key', url: 'git@github.com:LQss11/repo.git'
+                }
+            }
+        }
+        stage('Stage 2') {
+            steps {
+                // Clean before build
+                cleanWs()
+                sh ''
+            }
+        }
+        stage('Stage 3') {
+            steps {
+                sh ''
+            }
+        }
+    }
+}
+
