@@ -4,11 +4,11 @@ services:
     restart: always
     container_name: registry
     volumes:
-      - "stark-docker-registry:/var/lib/registry"
+      - "docker-registry:/var/lib/registry"
     networks: 
       - registry
 volumes:
-  stark-docker-registry:
+  docker-registry:
 networks:
   registry:
     driver: bridge
