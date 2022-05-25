@@ -1,9 +1,0 @@
-```sh
-kubectl port-forward --address=0.0.0.0 deployment/app 3000
-kubectl run nginx-pod --image=nginx -l=app=nginx
-kubectl expose pod nginx-pod --port=80 --target-port=80 --name=nginx 
-kubectl exec -it pod/nginx-pod -- sh
-# You connect to apiserver when run 
-kubectl proxy --port=8085
-# list all resources
-kubectl api-resources 
