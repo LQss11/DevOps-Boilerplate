@@ -8,7 +8,14 @@ in case host machine is `windows` and vm is `linux` follow through:
 ```sh
 sudo apt install cifs-utils
 sudo mkdir -p /mnt/share
-sudo mount.cifs //hostmachineIp/dirname /mnt/share/ -o user=share,pass=share
+echo "//hostmachineIp/dirname /mnt/share/ cifs user=share,pass=share,file_share=0755,dir_share=0777 0 0" >>/etc/fstab
+mount -a
+# OR
+sudo mount.cifs //hostmachineIp/dirname /mnt/share/ -o user=share,pass=share,file_share=0755,dir_share=0777
 ```
 >you can follow either [1](https://markontech.com/linux/mount-a-network-shared-drive-on-linux/) or [2](https://ubuntuforums.org/showthread.php?t=288534)
 >>If you don't know windows creds go to control pannel and check accounts, or if you are using email as default windows user then use your email credentials to mount the shared directory
+```sh
+# to unmount run
+umount /mnt/share
+```
