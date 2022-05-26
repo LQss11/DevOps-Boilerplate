@@ -1,4 +1,4 @@
-
+// ENV VAR interpretation https://stackoverflow.com/a/48026479/13541620
 pipeline {
     environment {
         TAG = '3'
@@ -18,6 +18,10 @@ pipeline {
                 }
                 echo '### Building repo/image:' + env.TAG + ' Image ###'
                 sh 'docker build -t ${REGISTRY}repo/image:${TAG} .'
+                sh '''
+                VARX=$(ls)
+                echo $VARX
+                '''
             }
         }
     }
