@@ -1,0 +1,1 @@
+- [Setup a static ip in the vm](https://www.howtogeek.com/103190/change-your-ip-address-from-the-command-prompt/)
