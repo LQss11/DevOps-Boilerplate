@@ -47,3 +47,7 @@ curl http://localhost:8088/api/v1/namespaces/default/pods/
 curl -XDELETE http://localhost:8088/api/v1/namespaces/default/pods/<pod-id>
 
 kubectl auth can-i get pods
+kubectl create secret generic regcred --from-file=.dockerconfigjson=config.json --type=kubernetes.io/dockerconfigjson --dry-run=client -o yaml >regcred.yaml
+```json
+{"auths": {"acrtest.azurecr.io": {"username": "acrtest","password": "StrongPassword"}}}
+```
