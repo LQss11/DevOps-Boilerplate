@@ -1,0 +1,25 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<org.jenkinsci.plugins.configfiles.GlobalConfigFiles plugin="config-file-provider@3.10.0">
+  <configs class="sorted-set">
+    <comparator class="org.jenkinsci.plugins.configfiles.ConfigByIdComparator"/>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>FILEID1</id>
+      <name>filename.json</name>
+      <comment>Config number one yaay!</comment>
+      <content>Some values
+        And file config
+      </content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+    <org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+      <id>FILEID2</id>
+      <name>filename2.yaml</name>
+      <comment>Config number two yaay!</comment>
+      <content>Another 
+        config</content>
+      <providerId>org.jenkinsci.plugins.configfiles.custom.CustomConfig</providerId>
+      <customizedCredentialMappings/>
+    </org.jenkinsci.plugins.configfiles.custom.CustomConfig>
+  </configs>
+</org.jenkinsci.plugins.configfiles.GlobalConfigFiles>
