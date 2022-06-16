@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:5.7.32
+    container_name: mysql
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=spring-crud #Initial database
+    networks:
+      - spring-crud
+  #Phpmyadmin setup            
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin:5.1.1
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - '9081:80'
+    environment:
+      PMA_HOST: mysql
+    networks:
+      - spring-crud
+networks:
+  spring-crud:
+    driver: bridge      
+volumes:
+  mysql-data:    
