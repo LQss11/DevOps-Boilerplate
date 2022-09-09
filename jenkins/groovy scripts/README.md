@@ -17,3 +17,5 @@ Read file from specific path
 Encrypt file text as secret
 # encrypt-file-secretBytes.groovy
 Encrypt file as secret bytes
+# execute terminal commands:
+`print "ls".execute().text`
