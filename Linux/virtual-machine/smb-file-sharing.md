@@ -19,3 +19,16 @@ sudo mount.cifs //hostmachineIp/dirname /mnt/share/ -o user=share,pass=share,fil
 # to unmount run
 umount /mnt/share
 ```
+
+# Mount with creds
+You can also use credentials file to pass within the mount config
+```sh
+# <file system>             <dir>          <type> <options>                                                   <dump>  <pass>
+//WIN_SHARE_IP/share_name  /mnt/win_share  cifs  credentials=/etc/win-credentials,file_mode=0755,dir_mode=0755 0       0
+``` 
+and in creds file **/etc/win-credentials**:
+```sh
+username=user
+password=password
+domain=domain
+```
