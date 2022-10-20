@@ -22,6 +22,10 @@ Jenkins.instance.getAllItems(com.cloudbees.hudson.plugins.folder.Folder.class).e
 
 for (c in allCredentials) {
   println(c.id)
+  //   println(c.getProperties().toString())
+  if (c.properties.content) {
+    println("   Content: " + c.getContent())
+  }       
   if (c.properties.username) {
     println("   description: " + c.description)
   }
