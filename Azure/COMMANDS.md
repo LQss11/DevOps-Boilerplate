@@ -42,3 +42,4 @@ You can visit this [link](https://learn.microsoft.com/en-us/cli/azure/role/assig
 az role assignment create --assignee a87e7b2b-c264-4d44-aff6-571d2530e5e0 --role Owner
 az role assignment list
 ```
+[Some good ref env vars](https://github.com/Azure/azure-sdk-for-go/wiki/Set-up-Your-Environment-for-Authentication)
