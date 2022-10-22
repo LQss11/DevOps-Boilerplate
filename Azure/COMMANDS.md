@@ -39,5 +39,6 @@ az login --service-principal --username <appid> --password <password> --tenant <
 # RBAC
 You can visit this [link](https://learn.microsoft.com/en-us/cli/azure/role/assignment?view=azure-cli-latest#az-role-assignment-create) and this [link](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) to check for built in roles, you can try by running the following: 
 ```sh
-az role assignment create --assignee a87e7b2b-c264-4d44-aff6-571d2530e5e0 --role [Owner|
+az role assignment create --assignee a87e7b2b-c264-4d44-aff6-571d2530e5e0 --role Owner
+az role assignment list
 ```
