@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  nginx
+  labels:
+    name:  nginx
+spec:
+  template:
+    metadata:
+      labels:
+        name:  nginx
+    spec:
+      restartPolicy: Always    
+      containers:
+      - image:  ipedrazas/docmock
+        imagePullPolicy: IfNotPresent
+        name:  nginx
+        resources: {}     
+        ports:
+        - containerPort:  80
+          name:  nginx
+        volumeMounts:
+            - name: nginx-conf
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf
